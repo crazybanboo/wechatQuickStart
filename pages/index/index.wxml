@@ -1,0 +1,57 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+
+<!--my test  -->
+  <view class='usermsg'>
+    <text class='user-msg'>{{msg}}</text>
+  </view>
+
+  <view class='userbutton'>
+    <text>我下面有一个按钮</text>
+    <button bindtap='clickMe' type='primary' >点击我</button>
+    <button bindtap='scanCodeClicked'>调用二维码</button>
+  </view>
+
+  <!-- <map longitude='121.503700' latitude='31.277210'></map> -->
+
+  <!-- <image class='myImage' src='../../微信1556701073(1).jpg'></image>  -->
+
+  <!-- <text>当前时间是：{{nowTime}}</text> -->
+  
+  <!--switch 按钮的wx:key用法  -->
+  <!-- <switch wx:for="{{objectArray}}" wx:key="id">{{item.id}} {{item.unique}}</switch>
+  <button bindtap='switch'>Switch</button>
+  <button bindtap='addToFront'>Add to the front</button>
+  <switch wx:for="{{numberArray}}" wx:key="*this">{{item}}</switch> -->
+
+  <!--模板  -->
+  <template name="msgItem">
+  <view>
+    <text> {{index}}:{{msg}}</text>
+    <text>Time is : {{time}}</text>
+  </view>
+  </template> 
+  <template is="msgItem" data="{{...item}}"/>
+
+  <template name="odd">
+    <view>odd</view>
+  </template>
+  <template name="aaa">
+    <view>aaa</view>
+  </template>
+  <block wx:for="{{[1,2,3,4,5]}}">
+    <template is="{{item % 2 == 0 ? 'odd':'aaa'}}"/>
+  </block>
+<!--------------------------  -->
+
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view>
