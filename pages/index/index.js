@@ -35,6 +35,9 @@ Page({
     })
   },
   onLoad: function () {
+    // 不用在data里定义也可以用msg1
+    this.setData({msg1: 'hh'})
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -81,6 +84,9 @@ Page({
     console.log(multiplyBy2(2))
     // common.sayHello()
     // common.sayGoodBye()
+    // 全局变量
+    var appInstance = getApp()
+    console.log(appInstance.globalData.myTestGlobal)
   },
   //调用二维码的按钮
   scanCodeClicked(){
@@ -111,8 +117,38 @@ Page({
     this.setData({
       objectArray: this.data.objectArray
     })
-  }
-
+  },
+  handletap: function(evt) {
+    console.log(evt.target)
+    console.log(evt.currentTarget)
+  },
+  handleBindtap: function(e) {
+    console.log(e)
+  },
+  handleLongtap: function(e) {
+    console.log("this is handleLongtap")
+    wx.request({
+      url: 'https://test.com/getinfo',
+      success: function (res) {
+        console.log(res)// 服务器回包信息
+      }
+    })
+  },
+  /*事件绑定与冒泡捕获*/
+  handletap1: function(e) {
+    console.log("handletap1")
+  },
+  handletap2: function (e) {
+    console.log("handletap2")
+  },
+  handletap3: function (e) {
+    console.log("handletap3")
+  },
+  handletap4: function (e) {
+    console.log("handletap4")
+  },
+  
+  /***************************/
 /************ */
 
 })

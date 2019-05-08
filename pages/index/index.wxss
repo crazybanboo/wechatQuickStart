@@ -33,4 +33,8 @@
   color: aqua;
   margin-top: 100rpx
 }
+
+.hover {
+  background-color: gray
+}
 /**********/

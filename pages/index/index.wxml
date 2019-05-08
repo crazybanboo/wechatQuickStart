@@ -12,6 +12,8 @@
   <view class='usermsg'>
     <text class='user-msg'>{{msg}}</text>
   </view>
+  <!--  不用在data里定义也可以用msg1 -->
+  <text>{{msg1}}</text>
 
   <view class='userbutton'>
     <text>我下面有一个按钮</text>
@@ -32,15 +34,15 @@
   <switch wx:for="{{numberArray}}" wx:key="*this">{{item}}</switch> -->
 
   <!--模板  -->
-  <template name="msgItem">
+  <!-- <template name="msgItem">
   <view>
     <text> {{index}}:{{msg}}</text>
     <text>Time is : {{time}}</text>
   </view>
   </template> 
-  <template is="msgItem" data="{{...item}}"/>
+  <template is="msgItem" data="{{...item}}"/> -->
 
-  <template name="odd">
+  <!-- <template name="odd">
     <view>odd</view>
   </template>
   <template name="aaa">
@@ -48,7 +50,23 @@
   </template>
   <block wx:for="{{[1,2,3,4,5]}}">
     <template is="{{item % 2 == 0 ? 'odd':'aaa'}}"/>
-  </block>
+  </block> -->
+
+  <!-- 事件属性 -->
+  <!-- （注意）catchlongtap='handleLongtap'== bind:longtap='handleLongtap'-->
+  <view id='outer' catchtap='handletap'  bind:longtap='handleLongtap'>
+    <view id='inner'>点击我</view>
+  </view>
+  <!-- 事件绑定与冒泡捕获 -->
+  <!-- 按inner_view触发顺序 2431 -->
+  <!-- catch 阻止事件的传递 -->
+  <view id='outer' bind:touchstart='handletap1' capture-bind:touchstart='handletap2' hover-class='hover'>
+    outer_view
+    <view id='inner' bind:touchstart='handletap3' capture-bind:touchstart='handletap4'>
+      inner_view
+    </view>
+  </view>
+
 <!--------------------------  -->
 
   <view class="usermotto">
